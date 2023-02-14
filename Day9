@@ -1,0 +1,123 @@
+@FunctionalInterface
+interface ConcatString {
+    String concat(String s1, String s2);
+}
+
+// Lambda implementation
+ConcatString concatLambda = (s1, s2) -> s1 + s2;
+
+// Usage example
+String result = concatLambda.concat("Hello, ", "World!");
+System.out.println(result); // Output: "Hello, World!"
+
+
+
+
+
+
+
+
+// Predicate to check if a number is divisible by 5
+Predicate<Integer> divisibleBy5 = n -> n % 5 == 0;
+
+// Predicate to check if a number is divisible by 2
+Predicate<Integer> divisibleBy2 = n -> n % 2 == 0;
+
+// Predicate to check if a number is divisible by both 2 and 5
+Predicate<Integer> divisibleBy2And5 = divisibleBy2.and(divisibleBy5);
+
+// Predicate to check if a number is divisible by 2 or 5
+Predicate<Integer> divisibleBy2Or5 = divisibleBy2.or(divisibleBy5);
+
+// Usage examples
+System.out.println(divisibleBy5.test(10)); // Output: true
+System.out.println(divisibleBy2.test(9)); // Output: false
+System.out.println(divisibleBy2And5.test(20)); // Output: true
+System.out.println(divisibleBy2Or5.test(7)); // Output: false
+
+
+
+
+
+
+
+
+
+@FunctionalInterface
+interface CustomerFilter {
+    boolean test(Customer c);
+}
+
+// Lambda implementation to filter customers by monthly income greater than 5 lac
+CustomerFilter filterByIncome = c -> c.getIncome() > 500000;
+
+// Usage example with an array of Customer objects
+Customer[] customers = { new Customer("John", 25, 600000), new Customer("Mary", 35, 400000), new Customer("Peter", 20, 700000) };
+for (Customer c : customers) {
+    if (filterByIncome.test(c)) {
+        System.out.println(c); // Output: "John" with income 600000 and "Peter" with income 700000
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Lambda implementation to filter customers by age between 18 and 25
+CustomerFilter filterByAge = c -> c.getAge() >= 18 && c.getAge() <= 25;
+
+// Usage example with the same array of Customer objects
+for (Customer c : customers) {
+    if (filterByAge.test(c)) {
+        System.out.println(c); // Output: "John" with age 25 and "Peter" with age 20
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Predicate to check if a LoanAgreement is active
+Predicate<LoanAgreement> activeLoan = l -> l.getStatus().equals("Active");
+
+// Predicate to check if a LoanAgreement has pending EMI
+Predicate<LoanAgreement> pendingEMI = l -> l.getEMI() > 0;
+
+// Combined predicate to filter LoanAgreement objects by status and pending EMI
+Predicate<LoanAgreement> filterByStatusAndEMI = activeLoan.and(pendingEMI);
+
+// Usage example with an array of LoanAgreement objects
+LoanAgreement[] loans = { new LoanAgreement("LA001", 500000, "Active", 12), new LoanAgreement("LA002", 1000000, "
+
+
+
+
+
+
+
+
+
+
+
+
+
